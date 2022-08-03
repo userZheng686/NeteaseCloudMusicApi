@@ -78,6 +78,7 @@ const createRequest = (method, url, data = {}, options) => {
     if (options.crypto === 'weapi') {
       let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
+      console.log('data', data)
       data = encrypt.weapi(data)
       url = url.replace(/\w*api/, 'weapi')
     } else if (options.crypto === 'linuxapi') {
@@ -163,6 +164,7 @@ const createRequest = (method, url, data = {}, options) => {
     axios(settings)
       .then((res) => {
         const body = res.data
+        // console.log('data', body, 'settings', settings)
         answer.cookie = (res.headers['set-cookie'] || []).map((x) =>
           x.replace(/\s*Domain=[^(;|$)]+;*/, ''),
         )
