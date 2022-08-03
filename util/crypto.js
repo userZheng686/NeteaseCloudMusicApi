@@ -52,7 +52,7 @@ const eapi = (url, object) => {
   const message = `nobody${url}use${text}md5forencrypt`
   const digest = crypto.createHash('md5').update(message).digest('hex')
   const data = `${url}-36cd479b6b5-${text}-36cd479b6b5-${digest}`
-  console.log('data', data)
+
   return {
     params: aesEncrypt(Buffer.from(data), 'ecb', eapiKey, '')
       .toString('hex')
