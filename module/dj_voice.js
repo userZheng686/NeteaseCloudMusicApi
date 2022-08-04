@@ -2,9 +2,10 @@
 
 module.exports = (query, request) => {
   const data = {
-    // cursor: 'null',
-    blockCode: 'VOICE_HOMEPAGE_BLOCK_SCENE_FM',
-    id: 'block_content',
+    cursor: query.cursor || 'null',
+    e_r: true,
+    // blockCode: 'VOICE_HOMEPAGE_BLOCK_BANNER',
+    // id: 'block_content',
   }
   return request(
     'POST',
