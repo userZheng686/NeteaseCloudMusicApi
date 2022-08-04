@@ -1,6 +1,7 @@
 // 播客(客户端)
 
 module.exports = (query, request) => {
+  query.cookie.os = 'pc'
   const data = {
     cursor: query.cursor || 'null',
     e_r: true,
