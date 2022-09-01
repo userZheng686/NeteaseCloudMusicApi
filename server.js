@@ -315,8 +315,8 @@ async function serveNcmApi(options) {
 
   /** @type {import('express').Express & ExpressExtension} */
   const appExt = app
-  const httpsServer = https.createServer(credentials, app)
-  appExt.server = httpsServer.listen(port, host, () => {
+  // const httpsServer = https.createServer(credentials, app)
+  appExt.server = app.listen(port, host, () => {
     console.log(`server running @ https://${host ? host : 'localhost'}:${port}`)
   })
 
