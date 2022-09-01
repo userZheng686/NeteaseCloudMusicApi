@@ -1,19 +1,16 @@
-// 私人FM
-
+//通知（收到了多少条消息 包括私信 通知 评论）
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
-  const data = {
-    e_r: true,
-  }
+  const data = {}
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v1/radio/get`,
+    `https://interface.music.163.com/eapi/pl/count`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v1/radio/get',
-      cookie: query.cookie,
       proxy: query.proxy,
+      url: '/api/pl/count',
+      cookie: query.cookie,
       realIP: query.realIP,
     },
   )

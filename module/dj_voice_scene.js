@@ -1,22 +1,21 @@
-// 已收藏专辑列表
+// 播客客户端FM
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    limit: query.limit || 25,
-    offset: query.offset || 0,
-    total: true,
+    sceneCode: 'SCENE_FM',
+    sceneId: query.sceneId,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/album/sublist`,
+    `https://interface.music.163.com/eapi/content/scene/fm/play/list`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/album/sublist',
-      cookie: query.cookie,
       proxy: query.proxy,
+      url: '/api/content/scene/fm/play/list',
+      cookie: query.cookie,
       realIP: query.realIP,
     },
   )

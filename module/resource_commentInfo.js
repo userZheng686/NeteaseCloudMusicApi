@@ -1,4 +1,4 @@
-// 歌单详情
+// 资源评论
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
@@ -8,19 +8,17 @@ module.exports = (query, request) => {
    s 收藏者
    */
   const data = {
-    id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    resourceType: query.type,
+    resourceIds: query.resourceIds,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/resource/commentInfo/list`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/resource/commentInfo/list',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

@@ -1,26 +1,23 @@
-// 歌单详情
+//私信发送
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
-  /**
-   * id 歌单id
-   n 返回的数量
-   s 收藏者
-   */
   const data = {
     id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    type: query.type,
+    userIds: query.userIds,
+    msg: query.msg,
+    time: new Date().getTime(),
+    offset: 0,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/msg/private/send`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/msg/private/send',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

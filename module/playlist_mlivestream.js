@@ -1,4 +1,4 @@
-// 歌单详情
+// 直播
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
@@ -8,19 +8,16 @@ module.exports = (query, request) => {
    s 收藏者
    */
   const data = {
-    id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    params: '[{"songId":41416576,"artistIds":[1002089]}]',
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/mlivestream/entrance/playlist/get`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/mlivestream/entrance/playlist/get',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

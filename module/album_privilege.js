@@ -1,4 +1,4 @@
-// 歌单详情
+// 专辑歌曲
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
@@ -9,18 +9,18 @@ module.exports = (query, request) => {
    */
   const data = {
     id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    offset: query.offset,
+    total: true,
+    limit: query.limit || 100,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/album/privilege`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/album/privilege',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

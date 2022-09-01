@@ -1,19 +1,16 @@
-// 私人FM
-
+//
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
-  const data = {
-    e_r: true,
-  }
+  const data = {}
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v1/radio/get`,
+    `https://interface.music.163.com/eapi/point/retrieve`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v1/radio/get',
-      cookie: query.cookie,
       proxy: query.proxy,
+      url: '/api/point/retrieve',
+      cookie: query.cookie,
       realIP: query.realIP,
     },
   )

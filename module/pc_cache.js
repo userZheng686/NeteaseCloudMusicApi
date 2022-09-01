@@ -1,20 +1,22 @@
-// 关注歌手列表
+// 获取pc缓存
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    limit: query.limit || 25,
-    offset: query.offset || 0,
-    total: true,
+    clienttype: 3,
+    domain: 'music.163.com',
+    env: 2,
   }
+  console.log('data', data)
+  //   /api/videotimeline/otherclient/get
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/artist/sublist`,
+    `https://interface.music.163.com/eapi/pccache/patch/get`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/artist/sublist',
       cookie: query.cookie,
+      url: '/api/pccache/patch/get',
       proxy: query.proxy,
       realIP: query.realIP,
     },

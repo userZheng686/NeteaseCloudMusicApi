@@ -1,26 +1,22 @@
-// 歌单详情
+// 直播推荐
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
-  /**
-   * id 歌单id
-   n 返回的数量
-   s 收藏者
-   */
   const data = {
-    id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    offset: query.offset || 0,
+    total: true,
+    limit: query.limit || 20,
+    liveType: 1,
+    channel: 2,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/livestream/dragonball/recommend/v1`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/livestream/dragonball/recommend/v1',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

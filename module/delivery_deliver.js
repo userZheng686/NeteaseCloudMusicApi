@@ -1,22 +1,19 @@
-// 已收藏专辑列表
-
+//续费弹窗
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    limit: query.limit || 25,
-    offset: query.offset || 0,
-    total: true,
+    positionId: '11',
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/album/sublist`,
+    `https://interface.music.163.com/eapi/delivery/deliver`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/album/sublist',
-      cookie: query.cookie,
       proxy: query.proxy,
+      url: '/api/delivery/deliver',
+      cookie: query.cookie,
       realIP: query.realIP,
     },
   )

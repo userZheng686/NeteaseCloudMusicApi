@@ -1,26 +1,20 @@
-// 歌单详情
+// 专栏 往期回顾
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
-  /**
-   * id 歌单id
-   n 返回的数量
-   s 收藏者
-   */
   const data = {
     id: query.id,
-    n: 50,
-    s: query.s || 8,
-    t: -1,
+    seriesId: query.seriesId,
+    limit: query.limit || 6,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v6/playlist/detail`,
+    `https://interface.music.163.com/eapi/topic/more`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/v6/playlist/detail',
+      url: '/api/topic/more',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
