@@ -9,18 +9,18 @@ const cache = require('./util/apicache').middleware
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
-const privateKey = fs.readFileSync(
-  path.join(__dirname, './keys/cert.key'),
-  'utf8',
-)
-const certificate = fs.readFileSync(
-  path.join(__dirname, './keys/cert.crt'),
-  'utf8',
-)
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-}
+// const privateKey = fs.readFileSync(
+//   path.join(__dirname, './keys/cert.key'),
+//   'utf8',
+// )
+// const certificate = fs.readFileSync(
+//   path.join(__dirname, './keys/cert.crt'),
+//   'utf8',
+// )
+// const credentials = {
+//   key: privateKey,
+//   cert: certificate,
+// }
 
 /**
  * The version check result.
