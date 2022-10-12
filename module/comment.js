@@ -14,7 +14,7 @@ module.exports = (query, request) => {
   }
 
   if (query.type == 'A_EV_2_') {
-    data.threadId = query.threadId
+    // data.threadId = query.threadId
   }
   if (query.t == 'add') data.content = query.content
   else if (query.t == 'delete') data.commentId = query.commentId

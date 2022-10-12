@@ -155,7 +155,8 @@ async function consturctServer(moduleDefs) {
     if (req.path !== '/' && !req.path.includes('.')) {
       res.set({
         'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': req.headers.origin || '*',
+        'Access-Control-Allow-Origin':
+          req.headers.origin || 'https://localhost:4000',
         'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
         'Content-Type': 'application/json; charset=utf-8',
@@ -316,7 +317,7 @@ async function serveNcmApi(options) {
   /** @type {import('express').Express & ExpressExtension} */
   const appExt = app
   const httpsServer = https.createServer(credentials, app)
-  appExt.server = app.listen(port, host, () => {
+  appExt.server = httpsServer.listen(port, host, () => {
     console.log(`server running @ https://${host ? host : 'localhost'}:${port}`)
   })
 

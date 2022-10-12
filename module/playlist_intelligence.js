@@ -1,4 +1,4 @@
-// 更新播放量
+// 心动模式
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'

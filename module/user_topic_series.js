@@ -1,26 +1,23 @@
-// 用户动态
-
+//用户创建的专栏
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    userId: query.uid,
+    userId: query.userId,
     offset: query.offset || 0,
-    getcounts: true,
-    time: query.lasttime || -1,
-    limit: query.limit || 30,
-    total: false,
+    total: true,
+    limit: query.limit || 1000,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/event/get/${query.uid}`,
+    `https://interface.music.163.com/eapi/topic/series/byuser`,
     data,
     {
       crypto: 'eapi',
+      url: '/api/topic/series/byuser',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
-      url: `/api/event/get/${query.uid}`,
     },
   )
 }

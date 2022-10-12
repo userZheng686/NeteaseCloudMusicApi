@@ -1,12 +1,13 @@
-// 用户详情
+// 音乐达人标签
 
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v1/w/user/detail/${query.uid}`,
+    `https://interface.music.163.com/eapi/user/playlistTalent/tags`,
     {
-      userId: query.uid,
-      all: true,
+      offset: query.offset || 0,
+      total: true,
+      limit: query.limit || 50,
       e_r: true,
     },
     {
@@ -14,7 +15,7 @@ module.exports = (query, request) => {
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
-      url: `/api/w/v1/user/detail/${query.uid}`,
+      url: `/api/user/playlistTalent/tags`,
     },
   )
 }

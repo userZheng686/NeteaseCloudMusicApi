@@ -15,6 +15,7 @@ module.exports = (query, request) => {
     id: query.id,
     n: '500',
     s: '0',
+    e_r: true,
   }
   return request(
     'POST',

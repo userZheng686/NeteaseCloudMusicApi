@@ -1,19 +1,3 @@
-//歌手详情
-// module.exports = (query, request) => {
-//   return request(
-//     'POST',
-//     `https://music.163.com/api/artist/head/info/get`,
-//     {
-//       id: query.id,
-//     },
-//     {
-//       crypto: 'weapi',
-//       cookie: query.cookie,
-//       proxy: query.proxy,
-//       realIP: query.realIP,
-//     },
-//   )
-// }
 const crypto = require('crypto')
 const qs = require('querystring')
 /**
@@ -34,25 +18,34 @@ function getCacheKey(params) {
   return key
 }
 
+// 歌单详情
+
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  /**
+   * id 歌单id
+   n 返回的数量
+   s 收藏者
+   */
   const data = {
-    top: '50',
     id: query.id,
+    n: 10,
+    s: 0,
     e_r: true,
     cache_key: getCacheKey({
-      top: '50',
       id: `${query.id}`,
+      n: '10',
+      s: '0',
       e_r: true,
     }),
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/artist/v3/detail`,
+    `https://interface.music.163.com/eapi/playlist/v4/detail`,
     data,
     {
       crypto: 'eapi',
-      url: '/api/artist/v3/detail',
+      url: '/api/playlist/v4/detail',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,

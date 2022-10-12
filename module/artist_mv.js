@@ -1,16 +1,23 @@
 // 歌手相关MV
 
 module.exports = (query, request) => {
+  query.cookie.os = 'pc'
   const data = {
     artistId: query.id,
     limit: query.limit,
     offset: query.offset,
     total: true,
   }
-  return request('POST', `https://music.163.com/weapi/artist/mvs`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://interface.music.163.com/eapi/artist/mvs`,
+    data,
+    {
+      crypto: 'eapi',
+      cookie: query.cookie,
+      proxy: query.proxy,
+      url: '/api/artist/mvs',
+      realIP: query.realIP,
+    },
+  )
 }

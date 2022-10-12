@@ -3,14 +3,22 @@
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    forwards: query.forwards,
-    id: query.evId,
-    eventUserId: query.uid,
+    forwards: query.forwards || '',
+    id: query.id,
+    eventUserId: query.eventUserId,
+    e_r: true,
   }
-  return request('POST', `https://music.163.com/weapi/event/forward`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+
+  return request(
+    'POST',
+    `https://interface.music.163.com/eapi/event/forward`,
+    data,
+    {
+      crypto: 'eapi',
+      cookie: query.cookie,
+      url: '/api/event/forward',
+      proxy: query.proxy,
+      realIP: query.realIP,
+    },
+  )
 }

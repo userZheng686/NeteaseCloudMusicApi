@@ -1,26 +1,26 @@
-// 用户动态
+//话题飙升榜
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    userId: query.uid,
+    soaringlimit: query.limit || 10,
+    //1 24小时 7 一周
+    time: query.time || 1,
     offset: query.offset || 0,
-    getcounts: true,
-    time: query.lasttime || -1,
-    limit: query.limit || 30,
-    total: false,
+    total: true,
+    limit: query.limit || 10,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/event/get/${query.uid}`,
+    `https://interface.music.163.com/eapi/act/soaring`,
     data,
     {
       crypto: 'eapi',
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
-      url: `/api/event/get/${query.uid}`,
+      url: '/api/act/soaring',
     },
   )
 }

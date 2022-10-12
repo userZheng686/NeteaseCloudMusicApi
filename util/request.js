@@ -43,6 +43,19 @@ const chooseUserAgent = (ua = false) => {
     : ua
 }
 const createRequest = (method, url, data = {}, options) => {
+  options.cookie.os = 'pc'
+  options.cookie.NMTID = '00OeowVaEe-XtP91EQBiXKA1zWFQRYAAAGDNljsLw'
+  options.cookie.appver = '2.10.4.200396'
+  options.cookie.deviceId =
+    '65AC1E9A444D4B987F4F3ABCF9A4A350F0B79D0EC85B7668FB44'
+  options.cookie._remember_me = true
+  options.cookie.channel = 'netease'
+  options.cookie.WNMCID = 'hmqcih.1664008358719.01.0'
+  options.cookie.WEVNSM = '1.0.0'
+  options.cookie.ntes_kaola_ad = 1
+  options.cookie.mode = '80NV'
+  // options.cookie.MUSIC_U =
+  //   '74ea7a8181f4b38decc868f65ab800913851927dfcefa2ee718dfb2e7a8765f7993166e004087dd33e340d33e62418238b6f39cbf930833d0513e4c0e9950eff5dff17da8c0ab308a89fe7c55eac81f3'
   return new Promise((resolve, reject) => {
     let headers = { 'User-Agent': chooseUserAgent(options.ua) }
     if (method.toUpperCase() === 'POST')

@@ -10,7 +10,7 @@ module.exports = (query, request) => {
     commentId: query.cid,
   }
   if (query.type == 'A_EV_2_') {
-    data.threadId = query.threadId
+    // data.threadId = query.threadId
   }
   return request(
     'POST',

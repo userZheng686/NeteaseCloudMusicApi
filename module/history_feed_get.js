@@ -1,12 +1,11 @@
-// 用户详情
+// 动态历史记录
 
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/v1/w/user/detail/${query.uid}`,
+    `https://interface.music.163.com/eapi/event/pc/history/feed/get`,
     {
-      userId: query.uid,
-      all: true,
+      cursor: query.cursor || '-1',
       e_r: true,
     },
     {
@@ -14,7 +13,7 @@ module.exports = (query, request) => {
       cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
-      url: `/api/w/v1/user/detail/${query.uid}`,
+      url: `/api/event/pc/history/feed/get`,
     },
   )
 }

@@ -1,23 +1,19 @@
-// 歌手专辑列表
-
+//默认搜索关键词
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   const data = {
-    id: query.id,
-    offset: query.offset || 0,
-    total: true,
     e_r: true,
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/artist/albums/${query.id}`,
+    `https://interface.music.163.com/eapi/search/default/keyword/get`,
     data,
     {
       crypto: 'eapi',
-      cookie: query.cookie,
       proxy: query.proxy,
+      url: '/api/search/default/keyword/get',
+      cookie: query.cookie,
       realIP: query.realIP,
-      url: `/api/artist/albums/${query.id}`,
     },
   )
 }
