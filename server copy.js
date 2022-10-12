@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const https = require('https')
 const express = require('express')
 const request = require('./util/request')
 const packageJSON = require('./package.json')
@@ -8,6 +9,18 @@ const cache = require('./util/apicache').middleware
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
+const privateKey = fs.readFileSync(
+  path.join(__dirname, './keys/cert.key'),
+  'utf8',
+)
+const certificate = fs.readFileSync(
+  path.join(__dirname, './keys/cert.crt'),
+  'utf8',
+)
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+}
 
 /**
  * The version check result.
@@ -142,7 +155,8 @@ async function consturctServer(moduleDefs) {
     if (req.path !== '/' && !req.path.includes('.')) {
       res.set({
         'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': req.headers.origin || '*',
+        'Access-Control-Allow-Origin':
+          req.headers.origin || 'https://localhost:4000',
         'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
         'Content-Type': 'application/json; charset=utf-8',
@@ -302,8 +316,9 @@ async function serveNcmApi(options) {
 
   /** @type {import('express').Express & ExpressExtension} */
   const appExt = app
-  appExt.server = app.listen(port, host, () => {
-    console.log(`server running @ http://${host ? host : 'localhost'}:${port}`)
+  const httpsServer = https.createServer(credentials, app)
+  appExt.server = httpsServer.listen(port, host, () => {
+    console.log(`server running @ https://${host ? host : 'localhost'}:${port}`)
   })
 
   return appExt
